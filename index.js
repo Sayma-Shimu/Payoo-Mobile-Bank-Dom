@@ -12,11 +12,12 @@ document.getElementById("loginButton").addEventListener('click', function(e){
     
 
     if(pinNumberConverted === pinNumber && mobileNumberConverted ===  phoneNumber){
-        console.log('all values matched');
+        
+        window.location.href ="./home.html"
         
     }
     else{
-        console.log('Invalid');
+        alert('Invalid');
         
     }
 })
