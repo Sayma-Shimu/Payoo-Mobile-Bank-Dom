@@ -1,17 +1,54 @@
 const validPin = 1234;
 
-document.getElementById('add-money-btn').addEventListener('click', (event) => {
+// --------function to get input value----------
+function getInputValueNumber(id) {
+    const inputField = document.getElementById(id);
+    const inputFieldValue = inputField.value;
+    const inputFieldValueNumber = parseInt(inputFieldValue);
+
+    return inputFieldValueNumber;
+
+}
+
+
+// ---function to get input value without number convert-----
+function getInputValue(id) {
+    const inputField = document.getElementById(id).value;
+    return inputField;
+}
+
+
+// -------function to get innerText--------
+
+function getInnerText(id) {
+    const element = parseInt(document.getElementById(id).innerText);
+    return element;
+
+}
+
+
+// -------function to get innerText--------
+function setInnerText(value) {
+    const avilableBalanceElement = document.getElementById('available-balance');
+
+    avilableBalanceElement.innerText = value;
+}
+
+
+// add money-----------
+
+ document.getElementById('add-money-btn').addEventListener  ('click', (event) => {
     event.preventDefault()
-    console.log('clicked hoyeche');
 
+    const bank = getInputValue('bank');
 
-    const bank = document.getElementById('bank').value
     const accountNumber = document.getElementById('account-number').value
-    const amount = parseInt(document.getElementById('add-amount').value)
-    const pin = parseInt(document.getElementById('add-pin').value)
 
-    const avilableBalance = parseInt(document.getElementById('available-balance').innerText
-    )
+    const amount = getInputValueNumber('add-amount');
+
+    const pin = getInputValueNumber('add-pin');
+
+    const avilableBalance = getInnerText('available-balance');
 
     if (accountNumber.length < 11) {
         alert('please provide valid account number')
@@ -25,7 +62,7 @@ document.getElementById('add-money-btn').addEventListener('click', (event) => {
 
     const totalNewAvilableBalance = amount + avilableBalance;
 
-    document.getElementById('available-balance').innerText = totalNewAvilableBalance;
+    setInnerText(totalNewAvilableBalance);
 
 })
 
@@ -34,15 +71,17 @@ document.getElementById('add-money-btn').addEventListener('click', (event) => {
 // -----------cash out feature-------------
 document.getElementById('Withdraw-Money-btn').addEventListener('click', (e) => {
     e.preventDefault()
-    const amount = parseInt(document.getElementById('withdraw-amount').value);
-    const avilableBalance = parseInt(document.getElementById('available-balance').textContent);
+    const amount = getInputValueNumber('withdraw-amount');
+
+    const avilableBalance = getInnerText('available-balance');
+
     const agentNumber = document.getElementById('agent-number').value;
-    const cashOutPin = parseInt(document.getElementById('cashOut-pin').value
-    )
+
+    const cashOutPin = getInputValueNumber('cashOut-pin');
 
 
-    if(agentNumber.length < 11){
-         alert('please provide valid number')
+    if (agentNumber.length < 11) {
+        alert('please provide valid number')
         return;
     }
 
@@ -53,7 +92,8 @@ document.getElementById('Withdraw-Money-btn').addEventListener('click', (e) => {
 
 
     const totalNewAvilableBalance = avilableBalance - amount;
-    document.getElementById('available-balance').textContent = totalNewAvilableBalance;
+
+    setInnerText(totalNewAvilableBalance);
 })
 
 
